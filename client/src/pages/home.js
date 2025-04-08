@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import RadioImage from '../components/radioImage';
 import { ReactComponent as QRCode } from './qr.svg';
 import QRCodePreview from "../components/QRCodePreview";
-
+import "../Styles/form.css"
+import Submit from "../components/Submit";
 
 /*var colorCheck = false;
 if(Math.abs(co1 - co2) <= (co1 * 0.15) || Math.abs(co1 - co2) <= (co2 * 0.15)){
@@ -36,14 +37,19 @@ const Home = () => {
         console.log(qrCodeData);
     };
     
+
+        
     return (
         <div name="qrCode">
-            <h1>QR Code Generator</h1>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label>1. Enter Destinatino URL</label><br></br>
+            <h1>Generate Your QR Code</h1>
+                
+                
+                <form onSubmit={handleSubmit} className='qrForm'>
+                <div className='leftContainer'>
+                <label>1. Enter Destinatino URL</label><br></br>
                     <input 
                         type='text' 
+                        className='urlImput'
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         name='resourcePointer' 
@@ -115,14 +121,19 @@ const Home = () => {
                             setSelectedValue={setSelectedValue}
                         />
                     </ul>
+                </div>
+
+                <div className='rightContainer'>
+                    <div name="preview">
+                        <QRCodePreview width={300} height={300} color={color} bgColor={bgColor} frame={frame}/>
+                        <p>
+                            *This is just a preview about the style of your QR code
+                        </p>
+                    </div>
                     <br></br>
-                    
-                    <input type='submit' value='Generate QR Code'/>
+                    <Submit text="Generate QR Code"/>
+                </div>
                 </form>
-            </div>
-            <div name="preview">
-                <QRCodePreview width={300} height={300} color={color} bgColor={bgColor} frame={frame}/>
-            </div>
         </div>
     );
 };

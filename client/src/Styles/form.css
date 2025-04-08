@@ -1,0 +1,31 @@
+.qrForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.leftContainer {
+    margin: 10%;
+}
+
+.rightContainer {
+    background-color: rgb(151, 151, 155);
+    margin: 10%;
+}
+
+.urlImput {
+    border-radius: 2em;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    height: 5%;
+    width: 96%;
+}
+
+.submitButton {
+
+}
+
+  
+  
+  

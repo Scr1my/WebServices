@@ -2,8 +2,10 @@ ul {
   list-style-type: none;
 }
 
-li {
+li.radioImage {
   display: inline-block;
+  width: 25%;
+  height: 25%;
 }
 
 input[type="radio"][id^="frame"] {
