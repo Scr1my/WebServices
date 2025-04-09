@@ -32,15 +32,41 @@ const Home = () => {
             url: url,
             color: color,
             bgColor: bgColor,
-            frame: frame
+            //frame: frame
         });
         console.log(qrCodeData);
+        generateQRCode(qrCodeData);
     };
     
-
+    const generateQRCode = (qrCodeData) => {
+        fetch("http://localhost:8080/api/generateQRCode", {
+            method:"post",
+            mode: "cors",
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify(qrCodeData)
+        })
+        .then(async (response) => {
+            if (response.status === 200) {
+                // Ottieni il blob dell'immagine
+                const imageBlob = await response.blob();
+        
+                // Crea un URL temporaneo per il blob
+                const imageObjectURL = URL.createObjectURL(imageBlob);
+        
+                // Mostra l'immagine in un tag <img>
+                document.getElementById("qrCodeImage").src = imageObjectURL;
+            } else {
+                return Promise.reject('Errore durante la generazione del QR code');
+            }
+        })
+        .catch((error) => console.log(error))
+    };
         
     return (
         <div name="qrCode">
+            <img id="qrCodeImage" alt="QR Code" />
             <h1>Generate Your QR Code</h1>
                 
                 
